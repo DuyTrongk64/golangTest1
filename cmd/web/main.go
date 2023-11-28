@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 )
@@ -10,7 +9,7 @@ type application struct {
 	appName  string
 	server   server
 	debug    bool
-	errlog   *log.Logger
+	errLog   *log.Logger
 	inforLog *log.Logger
 }
 
@@ -35,5 +34,8 @@ func main() {
 		errLog:   log.New(os.Stderr, "ERROR\t", log.Ltime|log.Ldate|log.Llongfile),
 	}
 
-	if err :=app.listenAndServer();
+	if err := app.listenAndServer(); err != nil {
+		log.Fatal(err)
+	}
+
 }
